@@ -44,7 +44,13 @@ def square(start, end):
 
 def circle(start, end):
     """Draw circle from start to end."""
-    radius = math.sqrt((end.x - start.x) ** 2 + 
+    radius = math.sqrt((end.x - start.x) ** 2 + (end.y - start.y) ** 2)
+    up()
+    goto(start.x, start.y - radius)
+    down()
+    begin_fill()
+    turtle_circle(radius)
+    end_fill()
     pass  # TODO
 
 
@@ -78,6 +84,9 @@ def store(key, value):
 
 state = {'start': None, 'shape': line}
 setup(420, 420, 370, 0)
+hideturtle()
+speed(0)
+tracer(False)
 onscreenclick(tap)
 listen()
 onkey(undo, 'u')
@@ -86,9 +95,14 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+onkey(lambda: color('orange'), 'O')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
 onkey(lambda: store('shape', rectangle), 'r')
 onkey(lambda: store('shape', triangle), 't')
+
+update()
+
+from turtle import done
 done()
