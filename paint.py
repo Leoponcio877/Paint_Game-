@@ -56,11 +56,50 @@ def circle(start, end):
 
 def rectangle(start, end):
     """Draw rectangle from start to end."""
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+
+    width = end.x - start.x
+    height = end.y - start.y
+
+    for count in range(2):
+        forward(width)
+        left(90)
+        forward(height)
+        left(90)
+
+    end_fill()
     pass  # TODO
 
 
 def triangle(start, end):
-    """Draw triangle from start to end."""
+    """Dibuja un triángulo equilátero relleno.
+ 
+    Calcula el lado del triángulo como la distancia entre 'start' y 'end'.
+    El triángulo se dibuja con la base en la parte inferior, apuntando
+    hacia arriba, centrado en 'start'.
+ 
+    Args:
+        start (vector): Vértice inferior izquierdo / punto de referencia (x, y).
+        end   (vector): Punto que determina la longitud del lado (x, y).
+ 
+    Returns:
+        None
+ 
+    Example:
+        >>> triangle(vector(0, 0), vector(80, 0))  # lado = 80
+    """
+    side = math.sqrt((end.x - start.x) ** 2 + (end.y - start.y) ** 2)
+    up()
+    goto(start.x, start.y)
+    down()
+    begin_fill()
+    for _ in range(3):
+        forward(side)
+        left(120)
+    end_fill()
     pass  # TODO
 
 
